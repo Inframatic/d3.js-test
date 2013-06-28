@@ -37,20 +37,44 @@
       .attr("width", 500)
       .attr("height", 500);
 
+      var data = [
+        {x: 10, y: 20},
+        {x: 40, y: 60},
+        {x: 50, y:70}
+      ];
 
-      var circle = canvas.append("circle") 
-        .attr("cx", 50)
-        .attr("cy", 50)
-        .attr("r", 25);
+      var group = canvas.append("g")
+        .attr("transform", "translate(100, 100)")
 
-      //makes circle shit over to the right!
-      circle.transition()
-        .delay(500) //Delays in milisec before moving ******
-        .duration(1500) //in miliseconds. 1500 = 1.5 seconds
-        .attr("cy", 150)
-        .transition() //prepares object to move twice ++
-        .attr("cx", 200)
-        .each("end", function () { d3.select(this).attr("fill", "red"); }); //"end" means at the end of the transition do this function turning this circle to red. "start" works too. 
+      var line = d3.svg.line()
+        .x(function (d) { return d.x; })
+        .y(function (d) { return d.y; });
+
+        group.selectAll("path")
+          .data([data])
+          .enter()
+          .append("path")
+          .attr("d", line)
+          .attr("fill", "none")
+          .attr("stroke","#000")
+          .attr("stroke-width", 10)
+
+
+
+
+      // var circle = canvas.append("circle") 
+      //   .attr("cx", 50)
+      //   .attr("cy", 50)
+      //   .attr("r", 25);
+
+      // //makes circle shit over to the right!
+      // circle.transition()
+      //   .delay(500) //Delays in milisec before moving ******
+      //   .duration(1500) //in miliseconds. 1500 = 1.5 seconds
+      //   .attr("cy", 150)
+      //   .transition() //prepares object to move twice ++
+      //   .attr("cx", 200)
+      //   .each("end", function () { d3.select(this).attr("fill", "red"); }); //"end" means at the end of the transition do this function turning this circle to red. "start" works too. 
     </script>
 
 
