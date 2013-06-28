@@ -32,22 +32,25 @@
       //     .attr("stroke", "green")
       //     .attr("stroke-width", 10);
 
-      var data = [10];
-
       var canvas = d3.select("body")
       .append("svg")
       .attr("width", 500)
       .attr("height", 500);
 
 
-      var circles = canvas.selectAll("circle") //<- this selection is bound to circle.
-      .data(data)
-      .enter()
-        .append("circle")
+      var circle = canvas.append("circle") 
         .attr("cx", 50)
         .attr("cy", 50)
-        .attr("r", 25)
+        .attr("r", 25);
 
+      //makes circle shit over to the right!
+      circle.transition()
+        .delay(500) //Delays in milisec before moving ******
+        .duration(1500) //in miliseconds. 1500 = 1.5 seconds
+        .attr("cy", 150)
+        .transition() //prepares object to move twice ++
+        .attr("cx", 200)
+        .each("end", function () { d3.select(this).attr("fill", "red"); }); //"end" means at the end of the transition do this function turning this circle to red. "start" works too. 
     </script>
 
 
